@@ -25,6 +25,22 @@ const samplebook = [
   { id: '16', content: require('./sample.jpg'), bookTag: 2, bookpage: 6 },
   { id: '17', content: require('./sample.jpg'), bookTag: 2, bookpage: 7 },
   { id: '18', content: require('./sample.jpg'), bookTag: 2, bookpage: 8 },
+
+  { id: '19', content: require('./abc2.jpg'), bookTag: 1, bookpage: 11 },
+  { id: '20', content: require('./abc2.jpg'), bookTag: 1, bookpage: 12 },
+  { id: '21', content: require('./abc2.jpg'), bookTag: 1, bookpage: 13 },
+  { id: '22', content: require('./abc2.jpg'), bookTag: 1, bookpage: 14 },
+  { id: '23', content: require('./abc2.jpg'), bookTag: 1, bookpage: 15 },
+
+
+  { id: '24', content: require('./abc2.jpg'), bookTag: 1, bookpage: 16 },
+  { id: '25', content: require('./abc2.jpg'), bookTag: 1, bookpage: 17 },
+  { id: '26', content: require('./abc2.jpg'), bookTag: 1, bookpage: 18 },
+  { id: '27', content: require('./abc2.jpg'), bookTag: 1, bookpage: 19 },
+  { id: '28', content: require('./abc2.jpg'), bookTag: 1, bookpage: 20 },
+
+ 
+
 ];
 
 
@@ -34,8 +50,10 @@ const samplebook = [
 
 
 const mainBook = []
+let testBook = []
 var no_of_pages_loaded = 0;
-var new_chunck = no_of_pages_loaded + 5 
+
+// inital render of every first 5 pages of book
 
 if(no_of_pages_loaded == 0 ) {
   for (let i =0; i < samplebook.length; i++ ) {
@@ -47,22 +65,10 @@ if(no_of_pages_loaded == 0 ) {
   
    } 
 no_of_pages_loaded += 5 
-console.log(no_of_pages_loaded) 
+
 }
 
 
-if(no_of_pages_loaded > 0) {
-  for (i= 0; i < samplebook.length; i ++) {
-    if(samplebook[i].bookTag <= new_chunck && samplebook[i].bookTag < no_of_pages_loaded  ) {
-  
-      mainBook.push({id : samplebook[i].id, content: samplebook[i].content})
-    }
-  }
-
-  no_of_pages_loaded +=5
-}
-
-console.log(mainBook)
 
 
 
@@ -75,13 +81,37 @@ export default function Home() {
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedData = mainBook.slice(startIndex, endIndex);
-  console.log(samplebook.slice(startIndex,endIndex))
+
 
   const nextPage = () => {
     if (page * itemsPerPage < samplebook.length) {
       NO_OF_PAGES_AT_A_TIME(page + 1);
+
+  //brain damage starts from here ,stay with me
+      if( (page + 1) * itemsPerPage >= samplebook.length  ) {
+        if(no_of_pages_loaded > 0 ) {
+
+          for (let i =0; i < samplebook.length; i++ ) {
+        
+        
+            if(samplebook[i].bookpage <= no_of_pages_loaded) {
+
+              mainBook.push({id : samplebook[i].id, content: samplebook[i].content})
+            }
+          
+           } 
+        no_of_pages_loaded += 5 
+        
+        } else {
+          
+        }
+        
+      }
+      console.log(testBook,page,no_of_pages_loaded )
     }
   };
+
+
 
   const prevPage = () => {
     if (page > 1) {
@@ -105,7 +135,7 @@ export default function Home() {
       <View style={styles.buttonContainer}>
         <Button title="Previous" onPress={prevPage} disabled={page === 1} />
         <Text style={styles.pageText}>Page {page}</Text>
-        <Button title="Next" onPress={nextPage} disabled={page * itemsPerPage >= samplebook.length} />
+        <Button title="Next" onPress={nextPage} disabled={page * itemsPerPage >= samplebook.length}  />
       </View>
     </View>
   );
