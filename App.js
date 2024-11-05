@@ -17,17 +17,17 @@ const samplebook = [
   { id: '10', content: require('./above.jpg'), bookTag: 1, bookpage: 10 },
 
 
-  { id: '11', content: require('./1.jpg'), bookTag: 1, bookpage: 1 },
-  { id: '12', content: require('./2.jpg'), bookTag: 1, bookpage: 2 },
-  { id: '13', content: require('./3.jpg'), bookTag: 1, bookpage: 3 },
-  { id: '14', content: require('./4.jpg'), bookTag: 1, bookpage: 4 },
-  { id: '15', content: require('./5.jpg'), bookTag: 1, bookpage: 5 },
+  { id: '11', content: require('./1.jpg'), bookTag: 2, bookpage: 1 },
+  { id: '12', content: require('./2.jpg'), bookTag: 2, bookpage: 2 },
+  { id: '13', content: require('./3.jpg'), bookTag: 2, bookpage: 3 },
+  { id: '14', content: require('./4.jpg'), bookTag: 2, bookpage: 4 },
+  { id: '15', content: require('./5.jpg'), bookTag: 2, bookpage: 5 },
 
-  { id: '16', content: require('./above.jpg'), bookTag: 1, bookpage: 6 },
-  { id: '17', content: require('./above.jpg'), bookTag: 1, bookpage: 7 },
-  { id: '19', content: require('./above.jpg'), bookTag: 1, bookpage: 8 },
-  { id: '20', content: require('./above.jpg'), bookTag: 1, bookpage: 9 },
-  { id: '21', content: require('./above.jpg'), bookTag: 1, bookpage: 10 },
+  { id: '16', content: require('./above.jpg'), bookTag: 2, bookpage: 6 },
+  { id: '17', content: require('./above.jpg'), bookTag: 2, bookpage: 7 },
+  { id: '19', content: require('./above.jpg'), bookTag: 2, bookpage: 8 },
+  { id: '20', content: require('./above.jpg'), bookTag: 2, bookpage: 9 },
+  { id: '21', content: require('./above.jpg'), bookTag: 2, bookpage: 10 },
 
 
 
@@ -52,7 +52,7 @@ if(no_of_pages_loaded == 0 ) {
 
 
     if(samplebook[i].bookpage <= 5) {
-      mainBook.push({id : samplebook[i].id, content: samplebook[i].content})
+      mainBook.push({id : samplebook[i].id, content: samplebook[i].content, bookpage: samplebook[i].bookpage, bookTag: samplebook[i].bookTag})
     }
   
    } 
@@ -88,7 +88,11 @@ export default function Home() {
         
             if(samplebook[i].bookpage <= (no_of_pages_loaded + 5) && samplebook[i].bookpage > no_of_pages_loaded) {
 
-              mainBook.push({id : samplebook[i].id, content: samplebook[i].content})
+              mainBook.push({id: samplebook[i].id,
+                content: samplebook[i].content,
+                bookpage: samplebook[i].bookpage,
+              bookTag: samplebook[i].bookTag
+              })
             }
           
            } 
@@ -112,9 +116,12 @@ export default function Home() {
     }
   };
 
+
   const renderItem = ({ item }) => (
     <View style={styles.imageContainer}>
-      <Image source={item.content} style={styles.image} />
+     
+      <Text>the page number is  {item.bookpage} the booktag is {item.bookTag}</Text>
+      
     </View>
   );
 
@@ -139,12 +146,20 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   imageContainer: {
-    height: 200,
+    height: 400,
     marginVertical: 10,
+    fontSize: 14,
+    zIndex: 1,
+   color: 'black',
   },
   image: {
     width: '100%',
     height: '100%',
+  },
+  fonts: {
+    fontSize: 14,
+    zIndex: 1,
+   color: 'black',
   },
   buttonContainer: {
     flexDirection: 'row',
