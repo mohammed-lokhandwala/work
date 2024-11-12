@@ -6,28 +6,22 @@ import { FlatList, View, StyleSheet, Button, Image, Text } from "react-native";
 const samplebook = [
   { id: '1', content: require('./1.jpg'), bookTag: 1, bookpage: 1 },
   { id: '2', content: require('./2.jpg'), bookTag: 1, bookpage: 2 },
-  { id: '3', content: require('./3.jpg'), bookTag: 1, bookpage: 3 },
-  { id: '4', content: require('./4.jpg'), bookTag: 1, bookpage: 4 },
-  { id: '5', content: require('./5.jpg'), bookTag: 1, bookpage: 5 },
-
-  { id: '6', content: require('./above.jpg'), bookTag: 1, bookpage: 6 },
-  { id: '7', content: require('./above.jpg'), bookTag: 1, bookpage: 7 },
-  { id: '8', content: require('./above.jpg'), bookTag: 1, bookpage: 8 },
-  { id: '9', content: require('./above.jpg'), bookTag: 1, bookpage: 9 },
-  { id: '10', content: require('./above.jpg'), bookTag: 1, bookpage: 10 },
 
 
-  { id: '11', content: require('./1.jpg'), bookTag: 2, bookpage: 1 },
-  { id: '12', content: require('./2.jpg'), bookTag: 2, bookpage: 2 },
-  { id: '13', content: require('./3.jpg'), bookTag: 2, bookpage: 3 },
-  { id: '14', content: require('./4.jpg'), bookTag: 2, bookpage: 4 },
-  { id: '15', content: require('./5.jpg'), bookTag: 2, bookpage: 5 },
+  { id: '6', content: require('./above.jpg'), bookTag: 2, bookpage: 6 },
+  { id: '7', content: require('./above.jpg'), bookTag: 2, bookpage: 7 },
+  { id: '8', content: require('./above.jpg'), bookTag: 2, bookpage: 8 },
+  { id: '9', content: require('./above.jpg'), bookTag: 2, bookpage: 9 },
+  { id: '10', content: require('./above.jpg'), bookTag: 2, bookpage: 10 },
+  { id: '11', content: require('./above.jpg'), bookTag: 2, bookpage: 11 },
 
-  { id: '16', content: require('./above.jpg'), bookTag: 2, bookpage: 6 },
-  { id: '17', content: require('./above.jpg'), bookTag: 2, bookpage: 7 },
-  { id: '19', content: require('./above.jpg'), bookTag: 2, bookpage: 8 },
-  { id: '20', content: require('./above.jpg'), bookTag: 2, bookpage: 9 },
-  { id: '21', content: require('./above.jpg'), bookTag: 2, bookpage: 10 },
+
+  { id: '12', content: require('./1.jpg'), bookTag: 3, bookpage: 1 },
+  { id: '13', content: require('./2.jpg'), bookTag: 3, bookpage: 2 },
+  { id: '14', content: require('./3.jpg'), bookTag: 3, bookpage: 3 },
+ 
+
+
 
 
 
@@ -79,7 +73,7 @@ export default function Home() {
     if (page * itemsPerPage < samplebook.length) {
       NO_OF_PAGES_AT_A_TIME(page + 1);
 
-  //brain damage starts from here ,stay with me
+  // ,stay with me
       if( (page + 1) * itemsPerPage >= samplebook.length  ) {
         if(no_of_pages_loaded > 0 ) {
 
